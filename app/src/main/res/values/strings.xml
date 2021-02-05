@@ -20,4 +20,5 @@
         \n\nI am an Android developer.
         \n\nI am a sea lover.
     </string>
+    <string name="what_is_your_nickname">What is your nickname?</string>
 </resources>
