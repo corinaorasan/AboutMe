@@ -12,21 +12,35 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        doneButtonClick()
+    }
 
-        findViewById<Button>(R.id.done_button).setOnClickListener{
+    private fun doneButtonClick() {
+        findViewById<Button>(R.id.done_button).setOnClickListener {
             addNickName(it)
         }
     }
 
-    private fun addNickName(view: View){
-        val editText= findViewById<TextView>(R.id.nickname_edit)
-        val nicknameTextView= findViewById<TextView>(R.id.nickname_text)
-        nicknameTextView.text=editText.text
-        editText.visibility=View.GONE
-        view.visibility=View.GONE
-        nicknameTextView.visibility=View.VISIBLE
-        // Hide the keyboard.
+    private fun addNickName(view: View) {
+        val editText = findViewById<TextView>(R.id.nickname_edit)
+        val nicknameTextView = findViewById<TextView>(R.id.nickname_text)
+        nicknameTextView.text = editText.text
+        hideView(editText)
+        hideView(view)
+        showView(nicknameTextView)
+        hideTheKeyboard(view)
+    }
+
+    private fun hideTheKeyboard(view: View) {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    private fun hideView(view: View) {
+        view.visibility = View.GONE
+    }
+
+    private fun showView(view: View) {
+        view.visibility = View.VISIBLE
     }
 }
