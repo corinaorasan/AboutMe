@@ -12,10 +12,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        doneButtonClick()
+        setClickListener()
     }
 
-    private fun doneButtonClick() {
+    private fun setClickListener() {
         findViewById<Button>(R.id.done_button).setOnClickListener {
             addNickName(it)
         }
@@ -25,22 +25,22 @@ class MainActivity : AppCompatActivity() {
         val editText = findViewById<TextView>(R.id.nickname_edit)
         val nicknameTextView = findViewById<TextView>(R.id.nickname_text)
         nicknameTextView.text = editText.text
-        hideView(editText)
-        hideView(view)
-        showView(nicknameTextView)
-        hideTheKeyboard(view)
+        hide(editText)
+        hide(view)
+        show(nicknameTextView)
+        hideKeyboard(view)
     }
 
-    private fun hideTheKeyboard(view: View) {
+    private fun hideKeyboard(view: View) {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    private fun hideView(view: View) {
+    private fun hide(view: View) {
         view.visibility = View.GONE
     }
 
-    private fun showView(view: View) {
+    private fun show(view: View) {
         view.visibility = View.VISIBLE
     }
 }
