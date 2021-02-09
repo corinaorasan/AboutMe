@@ -27,12 +27,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addNickName(view: View) {
-        val editText = findViewById<TextView>(R.id.nickname_edit)
-        val nicknameTextView = findViewById<TextView>(R.id.nickname_text)
-        nicknameTextView.text = editText.text
-        hide(editText)
+        binding.nicknameText.text = binding.nicknameEdit.text
+        hide(binding.nicknameEdit)
         hide(view)
-        show(nicknameTextView)
+        show(binding.nicknameText)
         hideKeyboard(view)
     }
 
