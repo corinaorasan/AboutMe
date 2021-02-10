@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="myName"
             type="com.example.aboutme.MyName" />
@@ -30,6 +31,7 @@
             style="@style/NameStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:ems="10"
             android:gravity="center"
             android:hint="@string/what_is_your_nickname"
@@ -53,9 +55,9 @@
             style="@style/NameStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@={myName.nickname}"
             android:textAlignment="center"
-            android:visibility="gone"
-            android:text="@={myName.nickname}"/>
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/star_image"
