@@ -7,27 +7,35 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import com.example.aboutme.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private val myName: MyName = MyName("Corina Orasan")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.myName = myName
         setClickListener()
     }
 
     private fun setClickListener() {
-        findViewById<Button>(R.id.done_button).setOnClickListener {
+        binding.doneButton.setOnClickListener {
             addNickName(it)
         }
     }
 
     private fun addNickName(view: View) {
-        val editText = findViewById<TextView>(R.id.nickname_edit)
-        val nicknameTextView = findViewById<TextView>(R.id.nickname_text)
-        nicknameTextView.text = editText.text
-        hide(editText)
-        hide(view)
-        show(nicknameTextView)
+        binding.apply {
+            myName?.nickname = nicknameEdit.text.toString()
+            invalidateAll()
+            hide(nicknameEdit)
+            hide(view)
+            show(nicknameText)
+        }
         hideKeyboard(view)
     }
 
